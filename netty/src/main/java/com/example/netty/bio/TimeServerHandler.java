@@ -28,14 +28,20 @@ public class TimeServerHandler implements Runnable {
             String currentTime = null;
             String body = null;
             while (true) {
-                body = in.readLine();
-                if (body == null) break;
+                body = in.readLine();    //读取一行，若读取到尾部则返回null，退出循环
+                if (body == null){
+                    System.out.println("break");
+                    break;
+                }
                 System.out.println("The time server receive order :" + body);
                 currentTime =
                         "QUERY TIME ORDER".equalsIgnoreCase(body)
                                 ? new Date(System.currentTimeMillis()).toString()
                                 : "BAD ORDER";
-                out.print(currentTime);
+                out.append("server accept ");
+                out.println(currentTime);
+                /*out.write(currentTime);
+                out.close();*/
             }
         } catch (IOException e) {
             if (in != null) {

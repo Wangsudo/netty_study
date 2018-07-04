@@ -9,7 +9,7 @@ import java.net.Socket;
  */
 public class TimeServer {
     public static void main(String[] args) {
-        int port = 8080;
+        int port = 8090;
         if (args != null && args.length > 0) {
             try {
                 port = Integer.valueOf(args[0]);
@@ -19,15 +19,15 @@ public class TimeServer {
         }
         ServerSocket server = null;
         try {
-            server = new ServerSocket(port);
+            server = new ServerSocket(port);  //通过构造函数创建ServerScoket
             System.out.println("The time server is start in port：" + port);
             Socket socket = null;
-            while (true) {
-                socket = server.accept();
+            while (true) {  //通过无限循环来监听客户端的连接
+                socket = server.accept();  //如果没有客户端连接 将阻塞在 accpet这里
                 new Thread(new TimeServerHandler(socket)).start();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            //
         } finally {
             if (server != null) {
                 System.out.println("The time server close");
