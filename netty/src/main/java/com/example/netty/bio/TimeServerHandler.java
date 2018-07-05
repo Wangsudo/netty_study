@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -38,10 +39,10 @@ public class TimeServerHandler implements Runnable {
                         "QUERY TIME ORDER".equalsIgnoreCase(body)
                                 ? new Date(System.currentTimeMillis()).toString()
                                 : "BAD ORDER";
-                out.append("server accept ");
-                out.println(currentTime);
-                /*out.write(currentTime);
-                out.close();*/
+//                out.append("server accept ");
+//                out.println(currentTime);
+                out.write(currentTime+"\r\n");
+                out.flush();
             }
         } catch (IOException e) {
             if (in != null) {
