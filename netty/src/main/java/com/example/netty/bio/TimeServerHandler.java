@@ -29,7 +29,7 @@ public class TimeServerHandler implements Runnable {
             String currentTime = null;
             String body = null;
             while (true) {
-                body = in.readLine();    //读取一行，若读取到尾部则返回null，退出循环
+                body = in.readLine();    //对socket的输入流读取 读取一行，若读取到尾部则返回null，退出循环
                 if (body == null){
                     System.out.println("break");
                     break;
